@@ -49,14 +49,14 @@ int main() {
 				};//switch
 			}//if
 			else if ( ie.type == _EVENT_MOUSE ) {
-				if ( ie.b == 0 )
-					handler.clickEvent({ie.x, ie.y}, 0);
+				handler.clickEvent({ie.x, ie.y}, ie.b);
 			}// if
 			else if ( ie.type == _EVENT_CHAR )
 			{
 				switch ( ie.c )
 				{
-					case 'w':
+					case 0x0D: //return
+						edit.accept();
 						break;
 					case 's':
 						break;
@@ -67,13 +67,15 @@ int main() {
 						render.enableDebugInfo(false);
 						break;
 					default:
-						handler.charEvent( ie.c );
+						edit.setChar( ie.c );
 				};//switch
 			}//if
 			else if ( ie.type == _EVENT_TERM ) {
 				return 0;
 			}//if
 		}//if
+
+		edit.setColor( pick.getColor() );
 
 		handler.write();
 		render.render();

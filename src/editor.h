@@ -5,6 +5,9 @@
 
 #include <stdint.h>
 
+#define _MODE_STD 0
+#define _MODE_LINE 1
+
 class editor : public cObject
 {
 public:
@@ -20,6 +23,8 @@ public:
 	void setChar(unsigned char _c);
 
 	void setMode(uint8_t _mode);
+
+	void accept();
 
 	void update();
 private:

@@ -23,6 +23,8 @@ editor::editor(sPos _size)
 	drawPoint('+', {_size.x + 1,0} ,_COL_DEFAULT);
 	drawPoint('+', {0,_size.y + 1} ,_COL_DEFAULT);
 	drawPoint('+', {_size.x + 1,_size.y + 1} ,_COL_DEFAULT);
+
+	update();
 }
 
 editor::~editor()
@@ -92,3 +94,12 @@ void editor::moveCursor(sPos _relMovement)
 	setCursor({currentPosition.x + _relMovement.x, currentPosition.y + _relMovement.y});
 }
 
+void editor::accept()
+{
+	switch (currentMode) {
+		default:
+			storage->drawPoint(currentChar, currentPosition, currentColor);
+			update();
+			break;
+	};
+}
